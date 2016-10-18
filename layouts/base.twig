@@ -7,35 +7,31 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
-		<header class="header" >
+		<header id="site-header" class="site-header">
 			{% block header %}
-				<div class="wrapper">
-					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
-					</h1>
-					<nav id="nav-main" class="nav-main" role="navigation">
-						{% include "menu.twig" with {'menu': menu.get_items} %}
-					</nav><!-- #nav -->
-				</div>
+				<a class="logo" href="{{site.url}}" rel="home">{{site.name}}</a>
+				<nav id="nav-main" class="nav-main" role="navigation">
+					{% include "menu.twig" with {'menu': menu.get_items} %}
+				</nav><!-- .nav-main -->
 			{% endblock %}
 		</header>
 
-		<section id="content" role="main" class="content-wrapper">
+		<section id="main-content" role="main" class="content">
 			{% if title %}<h1>{{title}}</h1>{% endif %}
-			<div class="wrapper {{sidebar_class}}">
+			<div class="{{sidebar_class}}">
 				{% block content %}
 					Sorry, no content
 				{% endblock %}
 			</div>
 			{% if sidebar %}
-				<aside class="layout-sidebar">
+				<aside class="sidebar">
 					{{sidebar}}
 				</aside>
 			{% endif %}
 		</section>
 
 		{% block footer %}
-			<footer id="footer">
+			<footer id="site-footer" class="site-footer">
 				{% include 'footer.twig' %}
 			</footer>
 			{{ function('wp_footer') }}
