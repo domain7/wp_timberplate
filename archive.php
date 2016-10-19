@@ -35,6 +35,17 @@ if ( is_day() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
+
+// Pagination
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$args = array(
+  'posts_per_page' => 9,
+  'paged' => $paged,
+);
+
+// THIS LINE IS CRUCIAL - Assign to default query
+query_posts($args);
+
 $context['posts'] = Timber::get_posts();
 
 Timber::render( $templates, $context );
