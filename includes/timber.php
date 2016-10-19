@@ -7,7 +7,7 @@ if ( ! class_exists( 'Timber' ) ) {
   return;
 }
 
-Timber::$dirname = array('templates', 'views');
+Timber::$dirname = array('layouts', 'views', 'views/partials');
 
 class StarterSite extends TimberSite {
 
@@ -24,53 +24,17 @@ class StarterSite extends TimberSite {
 
   function add_to_context( $context ) {
     $context['site'] = $this;
-        $context['footer_menu'] = new TimberMenu('footer');
-        $context['main_menu'] = new TimberMenu('main-menu');
+        //$context['main_menu'] = new TimberMenu('main-menu');
 
         // ACF Options
         // Usage: {{ options.optionname }
-        $context['options'] = get_fields('option');
+        // $context['options'] = get_fields('option');
 
-        // Add popular trips - used in mega menu
-        $popular_trip_args = array(
-            'post_type' => 'trip',
-            'posts_per_page' => -1,
-            'meta_query' => array(
-              array(
-                'key'     => 'trip_popular',
-                'value'   => 1,
-                'compare' => '=',
-              ),
-            ),
-        );
-
-        $context['popular_trips'] = Timber::get_posts( $popular_trip_args );
-
-        // Add type taxonomy - used in mega menu
-        $context['trip_types'] = Timber::get_terms('type');
-
-        // Add region taxonomy - used in mega menu
-        $context['trip_regions'] = Timber::get_terms('region');
-
-        // Add Random Canadian Insider
-        $insider_args = array(
-            'post_type' => 'canadian_insider',
-            'posts_per_page' => 1,
-            'orderby' => 'rand'
-        );
-        $context['insider'] = Timber::get_posts( $insider_args );
         return $context;
-  }
-
-  function myfoo( $text ) {
-    $text .= ' bar!';
-    return $text;
   }
 
   function add_to_twig( $twig ) {
     /* this is where you can add your own fuctions to twig */
-    $twig->addExtension( new Twig_Extension_StringLoader() );
-    $twig->addFilter('myfoo', new Twig_SimpleFilter('myfoo', array($this, 'myfoo')));
     return $twig;
   }
 
