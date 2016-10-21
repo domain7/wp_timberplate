@@ -9,10 +9,7 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		<header id="site-header" class="site-header">
 			{% block header %}
-				<a class="logo" href="{{site.url}}" rel="home">{{site.name}}</a>
-				<nav id="nav-main" class="nav-main" role="navigation">
-					{% include "menu.twig" with {'menu': main_menu.get_items} %}
-				</nav><!-- .nav-main -->
+				{% include 'header.twig' %}
 			{% endblock %}
 		</header>
 

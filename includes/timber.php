@@ -7,7 +7,7 @@ if ( ! class_exists( 'Timber' ) ) {
   return;
 }
 
-Timber::$dirname = array('layouts', 'views', 'views/partials');
+Timber::$dirname = array('/layouts', '/views', '/views/partials');
 
 class StarterSite extends TimberSite {
 
