@@ -24,7 +24,10 @@ class StarterSite extends TimberSite {
 
   function add_to_context( $context ) {
     $context['site'] = $this;
-        //$context['main_menu'] = new TimberMenu('main-menu');
+
+        // Menus
+        $context['main_nav'] = new TimberMenu('main-nav');
+        // $context['secondary_nav'] = new TimberMenu('secondary-nav');
 
         // ACF Options
         // Usage: {{ options.optionname }
