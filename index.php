@@ -22,6 +22,10 @@ $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
 $templates = array( 'index.twig' );
 
+if ( is_front_page() ) {
+  array_unshift( $templates, 'front-page.twig' );
+}
+
 if ( is_home() ) {
 	array_unshift( $templates, 'home.twig' );
 }
